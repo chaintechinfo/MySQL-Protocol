@@ -5,15 +5,16 @@ package com.jiagu.mysql.CURD;
  */
 public class QueryTest {
 
-    public static void main(String args[]) throws Exception{
+    public static void main(String[] args) throws Exception {
         Query query = new Query();
-        String host = "192.168.43.97";
-        int port = 3306;
+        String host = "127.0.0.1";
+        int port = 3308;
         String user = "root";
-        String password = "tdlab401";
-        String dataBase = "data";
-        String sqlStr = "SELECT name,author FROM `paper` limit 0,2;";
-        query.query(host,port,user,password,dataBase,sqlStr);
+        String password = "123456";
+        String dataBase = "test";
+        String sqlStr = "SELECT id, name, balance FROM `account` order by name asc limit 0, 2;";
+
+        query.query(host, port, user, password, dataBase, sqlStr);
     }
 
 }

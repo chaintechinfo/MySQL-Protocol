@@ -12,9 +12,10 @@ import com.jiagu.mysql.protocol.util.BufferUtil;
  * <pre><b>email: </b>849586227@qq.com</pre>
  * <pre><b>blog: </b>http://blog.csdn.net/wangyangzhizhou</pre>
  * @version 1.0
- * @see http://dev.mysql.com/doc/internals/en/com-query.html
+ * {@see http://dev.mysql.com/doc/internals/en/com-query.html}
  */
 public class QueryPacket extends MysqlPacket {
+	// command id, 1 byte
 	public byte flag;
 	public byte[] message;
 
@@ -27,13 +28,17 @@ public class QueryPacket extends MysqlPacket {
 	}
 
 	public void write(ByteBuffer buffer) {
-		int size = calcPacketSize();//前面的一个flag+messgag的字节长度
-		BufferUtil.writeUB3(buffer, size);//存放的长度的字节数为3个字节，所以调用了wirteUB3
+		// 前面的一个 flag + message 的字节长度
+		int size = calcPacketSize();
+		// 存放的长度的字节数为3个字节，所以调用了 writeUB3
+		BufferUtil.writeUB3(buffer, size);
 		buffer.put(packetId);
+
 		buffer.put(COM_QUERY);
 		buffer.put(message);
 	}
 
+	// 计算 packet 的字节数
 	@Override
 	public int calcPacketSize() {
 		int size = 1;

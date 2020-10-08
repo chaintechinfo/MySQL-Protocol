@@ -116,6 +116,8 @@ public class MysqlMessage {
 		return Double.longBitsToDouble(readLong());
 	}
 
+	// see https://dev.mysql.com/doc/internals/en/integer.html#packet-Protocol::LengthEncodedInteger
+	// 长度不同，占用的字节数不一样
 	public long readLength() {
 		int length = data[position++] & 0xff;
 		switch (length) {

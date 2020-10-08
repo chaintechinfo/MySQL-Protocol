@@ -8,12 +8,13 @@ import com.jiagu.mysql.protocol.MysqlPacket;
 public class ByteUtil {
 
     /**
-     *
      * @param mysqlPacket 利用多态使用mysqlPacket获得packetLength
-     * @param bytes 接受到的字节内容
+     * @param bytes       接受到的字节内容
      */
-    public static void bytesCut(MysqlPacket mysqlPacket ,byte[] bytes){
-        System.arraycopy(bytes, mysqlPacket.packetLength+4, bytes, 0, bytes.length-mysqlPacket.packetLength-4);
+    public static void bytesCut(MysqlPacket mysqlPacket, byte[] bytes) {
+        // 把后面的数据 copy 到 0 开始的位置
+        System.arraycopy(bytes, mysqlPacket.packetLength + 4, bytes,
+                0, bytes.length - mysqlPacket.packetLength - 4);
     }
 
 }
